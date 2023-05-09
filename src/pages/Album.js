@@ -1,14 +1,15 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-const api = `${process.env.REACT_APP_UNSPLASH_API}${process.env.REACT_APP_UNSPLASH_ACCESS}`;
+const api = 'https://api.unsplash.com/photos/';
+const accseeId = process.env.REACT_APP_UNSPLASH_ACCESS
 
 export default function Album(params) {
   const [photos, setPhotos] = useState([]);
   useEffect(() => {
     (async () => {
-      const response = await axios.get(`${api}&query=car`);
+      const response = await axios.get(`${api}?client_id=${accseeId}&query=car`);
       const results = response.data;
       setPhotos(results);
     })();
@@ -19,7 +20,7 @@ export default function Album(params) {
       <div className="col-4">
         <ul>
           {photos.map((photo) => {
-            return <li key={photo.id}>{photo.id}</li>;
+            return <li key={photo.id}><Link to={photo.id}>{photo.id}</Link></li>;
           })}
         </ul>
       </div>

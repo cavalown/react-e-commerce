@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Album from './pages/Album';
 import AlbumPhoto from './pages/AlbumPhoto';
+import AlbumIndex from './pages/AlbumIndex';
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
           <Route path="/" element={<Home/>}></Route>
           <Route path="/about" element={<About/>}></Route>
           <Route path="/album" element={<Album/>}>
-            <Route path="qq" element={<AlbumPhoto/>}></Route>
+            <Route index element={<AlbumIndex/>}></Route>
+            <Route path=":id" element={<AlbumPhoto/>}></Route>
           </Route>
         </Routes>
       </div>
